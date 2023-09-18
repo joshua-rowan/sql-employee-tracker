@@ -9,3 +9,4 @@ Department.hasMany(Role, {
 
 module.exports = { Department };
 
+
