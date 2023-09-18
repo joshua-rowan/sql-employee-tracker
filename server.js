@@ -1,9 +1,7 @@
 const express = require('express');
-const sequelize = require('./config/connection');
+const db = require('./db/connection');
+const inquirer = require('inquirer');
 
-const models = require('./models');
-const { Department, Employee, Role } = models;
-import startScript from './utils/promptScript'; // Import the startScript function
 
 const app = express();
 const PORT = process.env.PORT || 3001;
