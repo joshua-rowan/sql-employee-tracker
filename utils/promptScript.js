@@ -6,7 +6,7 @@ const {
 
 async function startScript() {
     try {
-        const { action } = await inquirer.createPromptModule([{
+        const { action } = await inquirer.prompt([{
             type: 'list',
             name: 'prompt',
             message: 'What would you like to do?',
@@ -26,4 +26,4 @@ async function startScript() {
 
 startScript();
 
-export default startScript;
+module.exports = startScript;
