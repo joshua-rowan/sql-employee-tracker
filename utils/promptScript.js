@@ -31,10 +31,11 @@ async function startScript() {
         } else if (action === 'Exit') {
             console.log('Goodbye!');
         }
-        startScript();
     } catch (error) {
         console.error('An error occurred: ', error.message);
     }
 };
 
 startScript();
+
+export default startScript;

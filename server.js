@@ -3,7 +3,7 @@ const sequelize = require('./config/connection');
 
 const models = require('./models');
 const { Department, Employee, Role } = models;
-const { startScript } = require('./utils/promptScript'); // Import the startScript function
+import startScript from './utils/promptScript'; // Import the startScript function
 
 const app = express();
 const PORT = process.env.PORT || 3001;
