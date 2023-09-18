@@ -1,4 +1,4 @@
-const { Department } = require('../models');
+const { Department, Role, Employee } = require('../models');
 
 async function getAllDepartments() {
     try {

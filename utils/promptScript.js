@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+
 const { 
     getAllDepartments 
 } = require('./queryFunctions');
