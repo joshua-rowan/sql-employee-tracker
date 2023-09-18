@@ -4,18 +4,6 @@ const {
     getAllDepartments 
 } = require('./queryFunctions');
 
-// const questions = [
-//     {
-//         type: 'list',
-//         name: 'action',
-//         message: 'What would you like to do?',
-//         choices: [
-//             'View All Departments',
-//             'Exit',
-//         ],
-//     },
-// ];
-
 async function startScript() {
     try {
         const { action } = await inquirer.createPromptModule([{
