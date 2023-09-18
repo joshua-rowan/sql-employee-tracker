@@ -21,20 +21,28 @@ Employee.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        role_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'role',
+                key: 'id',
+            },
+        },
+        manager_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'employee',
+                key: 'id',
+            },
+        },
     },
     {
         sequelize,
-        timestamps: false
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'employee',
     }
 );
-
-Employee.belongsTo(Role, {
-    foreignKey: 'role_id',
-});
-
-Employee.belongsTo(Employee, {
-    as: 'manager',
-    foreignKey: 'manager_id',
-})
 
 module.exports = Employee;
