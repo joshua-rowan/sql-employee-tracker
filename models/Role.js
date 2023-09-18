@@ -23,6 +23,7 @@ Role.init(
 
 Role.belongsTo(Department, {
     foreignKey: 'department_id',
+    as: 'department',
 });
 
 Role.hasMany(Employee, {
