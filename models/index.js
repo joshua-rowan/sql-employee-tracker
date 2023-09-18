@@ -1,5 +1,12 @@
 const Department = require('./Department');
-const Role = require('./Role');
-const Employee = require('./Employee');
+// const Employee = require('./Employee');
+// const Role = require('./Role');
 
-module.exports = { Department, Role, Employee };
+Department.hasMany(Role, {
+    foreignKey: 'department_id',
+    onDelete: 'CASCADE',
+});
+
+module.exports = { Department };
+
+

@@ -6,6 +6,12 @@ class Department extends Model {}
 
 Department.init(
     {
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true
+        },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -13,12 +19,11 @@ Department.init(
     },
     {
         sequelize,
-        timestamps: false
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'department',
     }
 );
-
-Department.hasMany(Role, {
-    foreignKey: 'department_id',
-});
 
 module.exports = Department;
