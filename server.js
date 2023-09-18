@@ -1,8 +1,8 @@
 const express = require('express');
 const sequelize = require('./config/connection');
 
-const models = require('./models')
-const { Department } = models;
+const models = require('./models');
+const { Department, Employee, Role } = models;
 const { startScript } = require('./utils/promptScript'); // Import the startScript function
 
 const app = express();
