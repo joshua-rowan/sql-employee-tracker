@@ -25,6 +25,20 @@ var startScript = function () {
         console.log('answers: ', answers)
         if (answers.prompt === 'View All Departments') {
             console.log('You chose to View All Departments!')
+        } else if (answers.prompt === 'View All Roles') {
+            console.log('You chose to View All Roles')
+        } else if (answers.prompt === 'View All Employees') {
+            console.log('You chose to View All Employees')
+        } else if (answers.prompt === 'Add a Department') {
+            console.log('You chose to Add a Department')
+        } else if (answers.prompt === 'Add a Role') {
+            console.log('You chose to Add a Role')
+        } else if (answers.prompt === 'Add an Employee') {
+            console.log('You chose  to Add an Employee')
+        } else if (answers.prompt === 'Update An Employee Role') {
+            console.log('You chose to Update an Employee Role')
+        } else if (answers.prompt === 'Exit') {
+            console.log('Goodbye!')
         }
         startScript();
     }) 
