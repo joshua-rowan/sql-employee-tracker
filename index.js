@@ -4,7 +4,6 @@ const db = require('./db/connection');
 db.connect(err => {
     if(err) throw err;
     console.log('Connected to database.');
-    startScript();
 });
 
 var startScript = function () {
@@ -24,11 +23,23 @@ var startScript = function () {
     }]).then((answers) => {
         console.log('answers: ', answers)
         if (answers.prompt === 'View All Departments') {
-            console.log('You chose to View All Departments!')
+            db.query(`SELECT * FROM department`, (err, result) => {
+                if(err) throw err;
+                console.table(result);
+                startScript();
+            })
         } else if (answers.prompt === 'View All Roles') {
-            console.log('You chose to View All Roles')
+            db.query(`SELECT * FROM role`, (err, result) => {
+                if(err) throw err;
+                console.table(result);
+                startScript();
+            })
         } else if (answers.prompt === 'View All Employees') {
-            console.log('You chose to View All Employees')
+            db.query(`SELECT * FROM employee`, (err, result) => {
+                if(err) throw err;
+                console.table(result);
+                startScript();
+            })
         } else if (answers.prompt === 'Add a Department') {
             console.log('You chose to Add a Department')
         } else if (answers.prompt === 'Add a Role') {
@@ -40,6 +51,7 @@ var startScript = function () {
         } else if (answers.prompt === 'Exit') {
             console.log('Goodbye!')
         }
-        startScript();
     }) 
 };
+
+startScript();
