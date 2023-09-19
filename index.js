@@ -41,7 +41,25 @@ var startScript = function () {
                 startScript();
             })
         } else if (answers.prompt === 'Add a Department') {
-            console.log('You chose to Add a Department')
+            inquirer.prompt([{
+                type: 'input',
+                name: 'addDepartment',
+                message: 'What is the Department Name?',
+                validate: newDepartment => {
+                    if (newDepartment) {
+                        return true;
+                    } else {
+                        console.log('No Department Added');
+                        return false;
+                    }
+                }
+            }]).then((answers) => {
+                db.query(`INSERT INTO department (name) VALUES (?)`, [answers.addDepartment], (err, result) => {
+                    if (err) throw err;
+                    console.log(`Added ${answers.addDepartment} to the database.`)
+                    startScript();
+                })
+            })
         } else if (answers.prompt === 'Add a Role') {
             console.log('You chose to Add a Role')
         } else if (answers.prompt === 'Add an Employee') {
