@@ -61,7 +61,55 @@ var startScript = function () {
                 })
             })
         } else if (answers.prompt === 'Add a Role') {
-            console.log('You chose to Add a Role')
+            inquirer.prompt([
+            {
+                type: 'input',
+                name: 'addRole',
+                message: 'What is the Role Name?',
+                validate: newRole => {
+                    if (newRole) {
+                        return true;
+                    } else {
+                        console.log('No Role Added');
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'addSalary',
+                message: 'What is the salary?',
+                validate: newSalary => {
+                    if (newSalary) {
+                        return true;
+                    } else {
+                        console.log('No salary given');
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'list',
+                name: 'departmentID',
+                message: 'What is the department?',
+                choices: result.map((department) => {
+                    return {name: department.name, value: department.id}
+                }),
+            },
+        
+        ]).then((answers) => {
+                db.query(`INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`,
+                [
+                    answers.role,
+                    answers.salary,
+                    answers.department
+                ],
+                (err, result) => {
+                    if (err) throw err;
+                    console.log(`Added ${answers.role} to the role database.`)
+                    startScript();
+                })
+            })
         } else if (answers.prompt === 'Add an Employee') {
             console.log('You chose  to Add an Employee')
         } else if (answers.prompt === 'Update An Employee Role') {
