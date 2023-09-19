@@ -22,7 +22,10 @@ var startScript = function () {
             'Update An Employee Role',
             'Exit']
     }]).then((answers) => {
-        console.log('answers: ', answers);
+        console.log('answers: ', answers)
+        if (answers.prompt === 'View All Departments') {
+            console.log('You chose to View All Departments!')
+        }
         startScript();
     }) 
 };
