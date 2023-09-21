@@ -14,7 +14,7 @@
 This application serves as a CLI Employee Tracker application.
 
 ## Video Example
-https://drive.google.com/file/d/1-TDw6yr6cRT2HjOvsD0EQgpMQrlCwOVN/view?usp=sharing  
+https://drive.google.com/file/d/1StXrJmvkorMbEWARKWgyh_-Q9a-b08nI/view?usp=sharing  
 
 ## Installation
 
