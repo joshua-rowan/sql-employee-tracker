@@ -151,7 +151,7 @@ var startScript = function () {
                 {
                     type: 'number',
                     name: 'roleID',
-                    message: 'Use the role chart above to input the role ID number for the employee.',
+                    message: 'Input the role ID number for the employee.',
                     validate: roleIdInput => {
                         if (roleIdInput) {
                             return true;
@@ -164,7 +164,7 @@ var startScript = function () {
                 {
                     type: 'number',
                     name: 'managerID',
-                    message: 'Use the employee table above to find and input the ID number for the manager of the employee.',
+                    message: 'Input the ID number for the manager of the employee.',
                     validate: managerIdInput => {
                         if (managerIdInput) {
                             return true;
