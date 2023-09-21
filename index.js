@@ -189,9 +189,49 @@ var startScript = function () {
                 })
             })
         } else if (answers.prompt === 'Update An Employee Role') {
-            console.log('You chose to Update an Employee Role')
-            startScript();
+            db.query(`SELECT * FROM employee`, (err, employee) => {
+                if (err) throw err;
+                var employees = employee.map((employeeID) => {
+                    return {
+                        name: employeeID.first_name +" " + employeeID.last_name,
+                        value: employeeID.id,
+                    }
+                })
+                db.query(`SELECT * FROM role`, (err, role) => {
+                    if (err) throw err;
+                    var roles = role.map((roleID) => {
+                        return {
+                            name: roleID.title,
+                            value: roleID.id,
+                        }
+                    })
+                    inquirer.prompt([
+                        {
+                            type: 'list',
+                            name: 'employeeID',
+                            message: "Choose which employee to update.",
+                            choices: employees,
+                        },
+                        {
+                            type: 'list',
+                            name: 'roleID',
+                            message: 'Choose the new role.',
+                            choices: roles,
+                        }
+                    ])
+                    .then((answers) => {
+                        db.query(`UPDATE employee SET role_id = ${answers.roleID} WHERE id = ${answers.employeeID}`,
+                        (err, result) => {
+                            if (err) throw err;
+                                console.log(`Employee role updated`)
+                                startScript();
+                        })
+                    })
+                })
+            })
+
         } else if (answers.prompt === 'Exit') {
+            db.end();
             console.log('Goodbye!')
         }
     }) 
