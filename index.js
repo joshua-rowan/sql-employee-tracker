@@ -61,7 +61,6 @@ var startScript = function () {
                 })
             })
         } else if (answers.prompt === 'Add a Role') {
-            console.log('You chose  to Add a Role') 
             db.query(`SELECT * FROM department`, (err, result) => {
                 if(err) throw err;
                 inquirer.prompt([
@@ -122,14 +121,6 @@ var startScript = function () {
             })
             
         } else if (answers.prompt === 'Add an Employee') {
-            db.query(`SELECT * FROM role`, (err, result) => {
-                if(err) throw err;
-                console.table(result);
-            })
-            db.query(`SELECT * FROM employee`, (err, result) => {
-                if(err) throw err;
-                console.table(result);
-            })
             inquirer.prompt([
                 {
                     type: 'input',
@@ -193,7 +184,7 @@ var startScript = function () {
                 ],
                 (err, result) => {
                     if (err) throw err;
-                    console.log(`Added ${answers.firstName} ${answer.lastName} to the employee database.`)
+                    console.log(`Added ${answers.firstName} ${answers.lastName} to the employee database.`)
                     startScript();
                 })
             })
