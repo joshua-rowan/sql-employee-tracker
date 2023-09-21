@@ -122,8 +122,81 @@ var startScript = function () {
             })
             
         } else if (answers.prompt === 'Add an Employee') {
-            console.log('You chose  to Add an Employee')
-            startScript();
+            db.query(`SELECT * FROM role`, (err, result) => {
+                if(err) throw err;
+                console.table(result);
+            })
+            db.query(`SELECT * FROM employee`, (err, result) => {
+                if(err) throw err;
+                console.table(result);
+            })
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'firstName',
+                    message: 'What is the first name of the employee?',
+                    validate: firstNameInput => {
+                        if (firstNameInput) {
+                            return true;
+                        } else {
+                            console.log('Please Add a First Name');
+                            return false;
+                        }
+                    }
+                },
+                {
+                    type: 'input',
+                    name: 'lastName',
+                    message: 'What is the last name of the employee?',
+                    validate: lastNameInput => {
+                        if (lastNameInput) {
+                            return true;
+                        } else {
+                            console.log('Please Add a Last Name');
+                            return false;
+                        }
+                    }
+                },
+                {
+                    type: 'number',
+                    name: 'roleID',
+                    message: 'Use the role chart above to input the role ID number for the employee.',
+                    validate: roleIdInput => {
+                        if (roleIdInput) {
+                            return true;
+                        } else {
+                            console.log('Please input valid role ID.')
+                            return false;
+                        }
+                    }
+                },
+                {
+                    type: 'number',
+                    name: 'managerID',
+                    message: 'Use the employee table above to find and input the ID number for the manager of the employee.',
+                    validate: managerIdInput => {
+                        if (managerIdInput) {
+                            return true;
+                        } else {
+                            console.log('Please input a valid ID for the manager.')
+                            return false;
+                        }
+                    }
+                }
+            ]).then ((answers) => {
+                db.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`,
+                [
+                    answers.firstName,
+                    answers.lastName,
+                    answers.roleID,
+                    answers.managerID
+                ],
+                (err, result) => {
+                    if (err) throw err;
+                    console.log(`Added ${answers.firstName} ${answer.lastName} to the employee database.`)
+                    startScript();
+                })
+            })
         } else if (answers.prompt === 'Update An Employee Role') {
             console.log('You chose to Update an Employee Role')
             startScript();
